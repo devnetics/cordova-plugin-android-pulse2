@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  id="cordova-plugin-pulse2" version="0.2.3">
+  <name>Device</name>
+  <description>Cordova Device Plugin</description>
+  <license>Apache 2.0</license>
+  <keywords>cordova,device</keywords>
+  <js-module src="www/pulse2.js" name="pulse2">
+    <clobbers target="pulse2" />
+  </js-module>
+
+  <platform name="android">
+    <source-file src="src/android/Pulse2Plugin.java" target-dir="src/org/apache/cordova/pulse2/"/>
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Pulse2Plugin">
+        <param name="android-package" value="org.apache.cordova.pulse2.Pulse2Plugin" />
+      </feature>
+      <preference name="android-minSdkVersion" value="15" />
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+      <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    </config-file>    
+
+    <resource-file src="src/android/pulsesdk-release.aar" target="libs/pulsesdk-release.aar" />
+    <framework src="src/android/pulse2.gradle" custom="true" type="gradleReference" />
+  </platform>
+  <!-- End Android -->
+
+</plugin>
